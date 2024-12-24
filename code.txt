@@ -1,4 +1,5 @@
 isAccess = False
+version = "spider_1.5"
 corect_id = [1205857033,2059209867]
 end = ""
 search_sys = "https://www.google.com/search?q="
