@@ -148,7 +148,7 @@ def echo_all(message):
                 mac = ":".join(['{:02X}'.format((uuid.getnode() >> elements) & 0xFF) for elements in range(5, -1, -1)])
                 end = f"Hello {message.from_user.username}, your device is {mac}\!"
             elif "version"==b:
-                and = version
+                уnd = f"YOUR VERSION:{version}"
             elif "regdir"in b:
                 def get_run_keys():
                     try:
