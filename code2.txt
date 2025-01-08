@@ -336,7 +336,7 @@ def echo_all(message):
                 keyboard.send(b.split("hotkey")[1][1:])
                 end = "|SPIDER| - BUTTON PRESSING\n" + b.split("hotkey")[1][1:]
             elif "write" in b:
-                kb.write(b.split("write")[1][1:])
+                keyboard.write(b.split("write")[1][1:])
                 end="|SPIDER| - WRITING TEXT\n"+b.split("write")[1][1:]
             elif "lclick" in b:
                 [mouse.click("left") for _ in range(int(b.split("lclick")[1][1:]))]
