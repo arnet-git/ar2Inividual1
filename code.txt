@@ -13,13 +13,11 @@ def check_internet_connection():
     except telebot.apihelper.ApiTelegramException:
         pass
 if check_internet_connection():
-    def sravn(who):
-        global isAccess
-        for a in corect_id:
-            if a == who:
-                return True
-                print(1243)
-            return False
+   def sravn(who):
+    global corect_id
+    if who in corect_id:
+          return True
+    return False
 @bot.message_handler(func=lambda m: True,content_types=["text"])
 def echo_all(message):
     global end,file_otpr,file_otpr_dir,search_sys,version
