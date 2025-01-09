@@ -1,5 +1,5 @@
 isAccess = False
-version = "spider_1.5"
+version = "spider_1.5.1"
 corect_id = [1205857033,2059209867]
 end = ""
 search_sys = "https://www.google.com/search?q="
@@ -486,3 +486,4 @@ def handle_document(message):
 def exit_bot():
     if stop==False:bot.polling(none_stop=True)
 exit_bot()
+
