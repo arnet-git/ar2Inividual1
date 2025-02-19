@@ -400,7 +400,7 @@ def echo_all(message):
                 devices = AudioUtilities.GetSpeakers()
                 interface = devices.Activate(IAudioEndpointVolume._iid_, CLSCTX_ALL, None)
                 volume = interface.QueryInterface(IAudioEndpointVolume)
-                new_volume = int(b.split("musat")[1][1:])
+                new_volume = int(b.split("musnew")[1][1:])
                 volume.SetMasterVolumeLevelScalar(new_volume, None)
                 end = f'NOW VOLUME - {new_volume * 100:.2f}%'
 
