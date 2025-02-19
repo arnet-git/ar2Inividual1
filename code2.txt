@@ -389,6 +389,7 @@ def echo_all(message):
             elif "url" in b:
                 webbrowser.open_new_tab(b.split('url')[1][1:])
                 end = "|SPIDER| - OPEN URL IN BROWSER\nURL:"+b.split('url')[1][1:]
+
             elif "musc"==b:
                 devices = AudioUtilities.GetSpeakers()
                 interface = devices.Activate(IAudioEndpointVolume._iid_, CLSCTX_ALL, None)
@@ -396,6 +397,9 @@ def echo_all(message):
                 current_volume = volume.GetMasterVolumeLevelScalar()
                 end = f'NOW VOLUME - {new_volume * 100:.2f}%'
             elif "musnew" in b:
+                devices = AudioUtilities.GetSpeakers()
+                interface = devices.Activate(IAudioEndpointVolume._iid_, CLSCTX_ALL, None)
+                volume = interface.QueryInterface(IAudioEndpointVolume)
                 new_volume = int(b.split("musat")[1][1:])
                 volume.SetMasterVolumeLevelScalar(new_volume, None)
                 end = f'NOW VOLUME - {new_volume * 100:.2f}%'
