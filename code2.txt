@@ -395,7 +395,7 @@ def echo_all(message):
                 interface = devices.Activate(IAudioEndpointVolume._iid_, CLSCTX_ALL, None)
                 volume = interface.QueryInterface(IAudioEndpointVolume)
                 current_volume = volume.GetMasterVolumeLevelScalar()
-                end = f'NOW VOLUME - {new_volume * 100:.2f}%'
+                end = f'NOW VOLUME - {current_volume * 100:.2f}%'
             elif "musnew" in b:
                 devices = AudioUtilities.GetSpeakers()
                 interface = devices.Activate(IAudioEndpointVolume._iid_, CLSCTX_ALL, None)
@@ -404,9 +404,6 @@ def echo_all(message):
                 volume.SetMasterVolumeLevelScalar(new_volume, None)
                 end = f'NOW VOLUME - {new_volume * 100:.2f}%'
 
-# Получаем текущее значение громкости
-current_volume = volume.GetMasterVolumeLevelScalar()  # Значение от 0.0 до 1.0
-print(f'Текущее значение громкости: {current_volume * 100:.2f}%')
             elif "CLOSE APP" == b:
                 global sent_message
                 markup = types.InlineKeyboardMarkup()
