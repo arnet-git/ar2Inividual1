@@ -396,7 +396,7 @@ def echo_all(message):
                 current_volume = volume.GetMasterVolumeLevelScalar()
                 end = f'NOW VOLUME - {new_volume * 100:.2f}%'
             elif "musnew" in b:
-                new_volume = b.split("musat")[1][1:]
+                new_volume = int(b.split("musat")[1][1:])
                 volume.SetMasterVolumeLevelScalar(new_volume, None)
                 end = f'NOW VOLUME - {new_volume * 100:.2f}%'
 
