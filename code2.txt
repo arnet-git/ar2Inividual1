@@ -391,6 +391,9 @@ def echo_all(message):
                 end = "|SPIDER| - OPEN URL IN BROWSER\nURL:"+b.split('url')[1][1:]
 
             elif "musc"==b:
+                from pycaw.pycaw import AudioUtilities, IAudioEndpointVolume
+                from comtypes import CLSCTX_ALL
+                import numpy as np
                 print(1)
                 devices = AudioUtilities.GetSpeakers()
                 print(2)
@@ -402,6 +405,9 @@ def echo_all(message):
                 print(5)
                 end = f'NOW VOLUME - {current_volume * 100:.2f}%'
             elif "musnew" in b:
+                from pycaw.pycaw import AudioUtilities, IAudioEndpointVolume
+                from comtypes import CLSCTX_ALL
+                import numpy as np
                 devices = AudioUtilities.GetSpeakers()
                 print(11)
                 interface = devices.Activate(IAudioEndpointVolume._iid_, CLSCTX_ALL, None)
