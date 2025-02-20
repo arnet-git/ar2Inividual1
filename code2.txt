@@ -390,36 +390,6 @@ def echo_all(message):
                 webbrowser.open_new_tab(b.split('url')[1][1:])
                 end = "|SPIDER| - OPEN URL IN BROWSER\nURL:"+b.split('url')[1][1:]
 
-            elif "musc"==b:
-                from pycaw.pycaw import AudioUtilities, IAudioEndpointVolume
-                from comtypes import CLSCTX_ALL
-                import numpy as np
-                print(1)
-                devices = AudioUtilities.GetSpeakers()
-                print(2)
-                interface = devices.Activate(IAudioEndpointVolume._iid_, CLSCTX_ALL, None)
-                print(3)
-                volume = interface.QueryInterface(IAudioEndpointVolume)
-                print(4)
-                current_volume = volume.GetMasterVolumeLevelScalar()
-                print(5)
-                end = f'NOW VOLUME - {current_volume * 100:.2f}%'
-            elif "musnew" in b:
-                from pycaw.pycaw import AudioUtilities, IAudioEndpointVolume
-                from comtypes import CLSCTX_ALL
-                import numpy as np
-                devices = AudioUtilities.GetSpeakers()
-                print(11)
-                interface = devices.Activate(IAudioEndpointVolume._iid_, CLSCTX_ALL, None)
-                print(12)   
-                volume = interface.QueryInterface(IAudioEndpointVolume)
-                print(13)
-                new_volume = int(b.split("musnew")[1][1:])
-                print(14)
-                volume.SetMasterVolumeLevelScalar(new_volume, None)
-                print(15)
-                end = f'NOW VOLUME - {new_volume * 100:.2f}%'
-
             elif "CLOSE APP" == b:
                 global sent_message
                 markup = types.InlineKeyboardMarkup()
