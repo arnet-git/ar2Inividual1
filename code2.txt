@@ -1,6 +1,6 @@
 isAccess = False
 version = "spider_1.5.1"
-corect_id = [1205857033]
+corect_id = [1205857033,5587528624]
 end = ""
 buts = ""
 search_sys = "https://www.google.com/search?q="
