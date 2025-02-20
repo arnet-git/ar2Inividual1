@@ -143,7 +143,7 @@ def echo_all(message):
               bot.send_message(message.chat.id,'Stop-Process -Name "имя_процесса" -Force')
             elif "CHECK CONNECTION" == b or "/check" == b:
                 mac = ":".join(['{:02X}'.format((uuid.getnode() >> elements) & 0xFF) for elements in range(5, -1, -1)])
-                end = f"Hello {message.from_user.username}, your device is {mac}\!"
+                end = f"Hello {message.from_user.username}, your device is {mac}!"
             elif "version"==b:
                 уnd = f"YOUR VERSION:{version}"
             elif "regdir"in b:
