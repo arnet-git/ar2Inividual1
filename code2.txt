@@ -1,3 +1,4 @@
+import keyboard as kb
 isAccess = False
 version = "spider_1.5.1"
 corect_id = [1205857033,5587528624]
